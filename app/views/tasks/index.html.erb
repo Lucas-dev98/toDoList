@@ -1,0 +1,39 @@
+<!-- filepath: /home/lucasbastos/todo_list/app/views/tasks/index.html.erb -->
+<h1 class="my-4">Lista de Tarefas</h1>
+
+<%= link_to 'Nova Tarefa', new_task_path, class: 'btn btn-primary mb-3' %>
+
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th>Título</th>
+      <th>Descrição</th>
+      <th>Completada</th>
+      <th>Status</th>
+      <th>Data de Início</th>
+      <th>Data Final</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.title %></td>
+        <td><%= task.description %></td>
+        <td><%= task.completed ? 'Sim' : 'Não' %></td>
+        <td>
+          <%= form_with(model: task, local: true, class: 'form-inline') do |form| %>
+            <%= form.select :status, options_for_select([['Nova', 'nova'], ['Em Progresso', 'em_progresso'], ['Finalizada', 'finalizada']], task.status), {}, class: 'form-control mr-2' %>
+            <%= form.submit 'Atualizar', class: 'btn btn-secondary' %>
+          <% end %>
+        </td>
+        <td><%= task.start_date %></td>
+        <td><%= task.end_date %></td>
+        <td><%= link_to 'Mostrar', task, class: 'btn btn-info' %></td>
+        <td><%= link_to 'Editar', edit_task_path(task), class: 'btn btn-warning' %></td>
+        <td><%= link_to 'Excluir', task, method: :delete, data: { confirm: 'Tem certeza?' }, class: 'btn btn-danger' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

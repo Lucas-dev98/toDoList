@@ -1,0 +1,35 @@
+<!-- filepath: /home/lucasbastos/todo_list/app/views/tasks/show.html.erb -->
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @task.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @task.description %>
+</p>
+
+<p>
+  <strong>Completed:</strong>
+  <%= @task.completed %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @task.status %>
+</p>
+
+<p>
+  <strong>Data de Início:</strong>
+  <%= @task.start_date %>
+</p>
+
+<p>
+  <strong>Data Final:</strong>
+  <%= @task.end_date %>
+</p>
+
+<%= link_to 'Edit', edit_task_path(@task) %> |
+<%= link_to 'Back', tasks_path %>
